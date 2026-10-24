@@ -2,7 +2,7 @@
 #include "opcode_table.h"
 
 const std::unordered_map<std::string, OpcodeInfo> opcodeTable = {
-    // Format 1
+    // Format 1/
     {"FIX",    {0xC4, 1}},
     {"FLOAT",  {0xC0, 1}},
     {"HIO",    {0xF4, 1}},
