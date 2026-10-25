@@ -5,7 +5,7 @@
 #include <cctype>
 #include <cmath>
 
-#include "./pass2/helpers.h"
+#include "./intermediate/helpers.h"
 
 void getUpperCaseString (std::string str) {
 
