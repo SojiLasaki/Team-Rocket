@@ -10,3 +10,5 @@ Run
 
 
 g++ -std=c++17 main.cpp opcode_table.cpp -o assembler
+
+g++ -std=c++17 main.cpp opcode_table.cpp -o assembler
