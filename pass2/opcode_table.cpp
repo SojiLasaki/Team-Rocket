@@ -36,7 +36,7 @@ const std::unordered_map<std::string, OpcodeInfo> opcodeTable = {
     {"JGT",    {0x34, 3}},
     {"JLT",    {0x38, 3}},
     {"JSUB",   {0x48, 3}},
-    {"LDA",    {0x00, 3}},
+    {"LDA",    {, 3}},
     {"LDB",    {0x68, 3}},
     {"LDCH",   {0x50, 3}},
     {"LDF",    {0x70, 3}},

@@ -1,9 +1,7 @@
-/* Declares the opcode dictionary */
-
 #ifndef OPCODE_TABLE_H
-#define OPCODE_TABLE_H
+#define OPCODEEE_TABLE_H
 
-#include <iostream>
+#include <string>
 #include <unordered_map>
 
 struct OpcodeInfo {
@@ -12,4 +10,5 @@ struct OpcodeInfo {
 };
 
 extern const std::unordered_map<std::string, OpcodeInfo> opcodeTable;
-#endif // OPCODE_TABLE_H
+
+#endif 
