@@ -1,5 +1,5 @@
 #ifndef OPCODE_TABLE_H
-#define OPCODEEE_TABLE_H
+#define OPCODE_TABLE_H
 
 #include <string>
 #include <unordered_map>
