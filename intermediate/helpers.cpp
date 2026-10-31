@@ -4,10 +4,19 @@
 #include <cctype>
 #include <cmath>
 #include "helpers.h"
+#include <variant>
 
 
+std::string decodeHexToNumeric(std::variant<std::string, int> hexValue) {
 
-std::string decodeHexToNumeric(std::string hexString) {
+    std::string hexString;
+    if (std::holds_alternative<int>(hexValue)) {
+    hexString = std::to_string(std::get<int>(hexValue));
+    } else {
+        hexString = std::get<std::string>(hexValue);
+    }
+
+    std::cout << "Hex String " << hexString << std::endl;
     if (hexString == "") {
         return "";
     }
@@ -76,4 +85,65 @@ int decodeLetterHexToNumeric( char letter) {
     }
 
     return 0;
+}
+
+
+std::string computeTwoHexValues(std::variant<std::string, int> currentLocation, std::variant<std::string,int> increment, ArthmeticOperation operation){
+    int currentLocationdDecoded = std::stoi(decodeHexToNumeric(currentLocation));
+    int expressionDecoded = std::stoi(decodeHexToNumeric(increment));
+    int computedValue;
+
+    switch (operation){
+
+        case ADD:
+        computedValue = currentLocationdDecoded + expressionDecoded;
+
+        //Need to then take decodeNumericToHex(computedValue)
+        return std::to_string(computedValue);
+
+        case SUB :
+        computedValue = currentLocationdDecoded - expressionDecoded;
+         //Need to then take decodeNumericToHex(computedValue)
+        return std::to_string(computedValue);
+
+        case MULT: 
+        computedValue = currentLocationdDecoded * expressionDecoded;
+        //Need to then take decodeNumericToHex(computedValue)
+        return std::to_string(computedValue);
+
+        default:
+        std::cout << "You Silly Rabbit This is an Invalid Operation You Cannot" << currentLocationdDecoded << " " << operation <<  " " << expressionDecoded;
+            return "";
+    }
+
+
+
+
+
+}
+
+std::string handleLocationCounterIncr(std::variant<std::string, int> currentLocation, std::variant<std::string,int> increment,  byteBasedOpCode opCodeType) {
+
+    int currentLocationdDecoded = std::stoi(decodeHexToNumeric(currentLocation));
+    int expressionDecoded = std::stoi(decodeHexToNumeric(increment));
+    std::string result;
+    switch (opCodeType) {
+        case RESB:
+        result = computeTwoHexValues(currentLocation,increment, ADD);
+        return result;
+
+        case RESW:
+        result = computeTwoHexValues(currentLocation,increment, MULT);
+        return result;
+
+        case NEITHER:
+        result = computeTwoHexValues(currentLocation,increment, ADD);
+        return result;
+
+        default :
+        std::cout << "Are you mad? You tried Computing a location Counter with Invalid Terms" 
+        << currentLocationdDecoded << " " << opCodeType << " " << expressionDecoded;
+
+
+    }
 }
