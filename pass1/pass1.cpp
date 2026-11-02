@@ -22,9 +22,11 @@ struct Record {
     string operand;
     int n = 0, i = 0;
     int x = 0, b = 0, p = 0, e = 0;
-    int locctr = 0;
-    int programCtr = 0;
-    int address = 0;
+    string locctr ;
+    string programCtr ;
+    string address ; //targetfield//
+    //string object code
+    //int format
 };
 
 static string upper(string s) {
@@ -118,6 +120,21 @@ static void writeRecord(ofstream &out, const Record &r) {
                << "},\n";
 }
 
+
+// std::string symbol;
+// std::string opCode;
+// std::string operand;
+// int n;
+// int i;
+// int x;
+// int b;
+// int p;
+// int e;
+// std::string locationCounter;
+// std::string programCounter;
+// std::string targetFeild;
+// std::string objectCode;
+// int format;
 int main(int argc, char *argv[]) {
     string inName, outName;
     if (argc >= 2) {
