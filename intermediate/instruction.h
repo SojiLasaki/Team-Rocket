@@ -6,7 +6,9 @@
 struct Instruction {
     std::string symbol;
     std::string opcode;
+    std::string opCodeHexNumber;
     std::string operand;
+    std::string operandHexNumber;
 
     int ni = 0;
     int x = 0;
