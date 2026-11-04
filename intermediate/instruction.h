@@ -5,22 +5,22 @@
 
 struct Instruction {
     std::string symbol;
-    std::string opcode;
+    std::string opCode;
     std::string opCodeHexNumber;
     std::string operand;
     std::string operandHexNumber;
 
-    int ni = 0;
+    int n = 0;
+    int i = 0;
     int x = 0;
     int b = 0;
     int p = 0;
     int e = 0;
 
-    int locctr = 0;
-    int programCtr = 0;
-    int address = 0;
-
-    int machineOpcode = 0;
+    int locationCounter = 0;
+    int programCounter = 0;
+    int targetFeild = 0;
+    std::string objectCode;
     int format = 0;
 };
 

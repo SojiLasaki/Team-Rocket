@@ -46,21 +46,26 @@ int main()
     // Pass 2 Start
     struct Items
     {
+
     public:
-        std::string symbol;
-        std::string opCode;
-        std::string operand;
-        int n;
-        int i;
-        int x;
-        int b;
-        int p;
-        int e;
-        std::string locationCounter;
-        std::string programCounter;
-        std::string targetFeild;
-        std::string objectCode;
-        int format;
+    std::string symbol;
+    std::string opCode;
+    std::string opCodeHexNumber;
+    std::string operand;
+    std::string operandHexNumber;
+
+    int n = 0;
+    int i = 0;
+    int x = 0;
+    int b = 0;
+    int p = 0;
+    int e = 0;
+
+    int locationCounter = 0;
+    int programCounter = 0;
+    int targetFeild = 0;
+    std::string objectCode;
+    int format = 0;
     };
 
     Items item1 = Items{"start", "LDA", "2B"};
