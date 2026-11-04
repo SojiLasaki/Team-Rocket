@@ -61,10 +61,10 @@ int main()
     int p = 0;
     int e = 0;
 
-    int locationCounter = 0;
-    int programCounter = 0;
-    int targetFeild = 0;
-    std::string objectCode;
+    std::string locationCounter = "0";
+    std::string  programCounter = "0";
+    std::string targetFeild = "0";
+    std::string objectCode = "0";
     int format = 0;
     };
 
