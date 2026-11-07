@@ -65,8 +65,24 @@ int main() {
 
             int firstByte = (opcodeValue & 0xFC) | (stoi(n) << 1) | stoi(i);
 
+            // check flags xbpe and assign shifts to positioins
+            // convert from string to integer for target field
+            int targetValue = stoi(instruction["targetField"].get<string>(), nullptr, 16);
+
+            int secondByte = (stoi(x) << 7) |
+                             (stoi(b) << 6) |
+                             (stoi(p) << 5) |
+                             (stoi(e) << 4) |
+                             ((targetValue >> 8) & 0x0F);
+
             cout << "First byte: " << hex << uppercase << firstByte << endl;
         }
+
+        int firstByte = (opcodeValue & 0xFC) |
+                        (stoi(n) << 1) |
+                        stoi(1);
+
+        int thiedNye = targetValue & 0xFF;
 
         // checking for format 4 instruction
         else if (format == "4") {
