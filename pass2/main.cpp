@@ -32,9 +32,9 @@ int main() {
             inst.machineOpcode = it->second.opcode;
             inst.format = it->second.format;
 
-            cout << "Instruction: " << inst.opcode << '\n';hha
+            cout << "Instruction: " << inst.opcode << '\n';
             cout << "Machine opcode: 0x" << hex << uppercase << inst.machineOpcode << dec << '\n';
-            cout << "Fomrat: " << inst.format << '\n';
+            cout << "Format: " << inst.format << '\n';
         } else {
             cout << "Unknown opcode " << inst.opcode << '\n';           
         }

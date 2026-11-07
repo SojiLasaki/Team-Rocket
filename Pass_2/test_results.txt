@@ -1,0 +1,23 @@
+Test run: Wed Nov  4 10:00:02 EST 2026
+================================
+PASS  b2h     input='0'            expected=0              got=0
+PASS  b2h     input='1'            expected=1              got=1
+PASS  b2h     input='1111'         expected=F              got=F
+PASS  b2h     input='10000'        expected=10             got=10
+PASS  b2h     input='11010110101'  expected=6B5            got=6B5
+PASS  b2h     input='0000'         expected=0              got=0
+PASS  b2h     input='1111111111111111' expected=FFFF           got=FFFF
+PASS  b2h     input='101010101010' expected=AAA            got=AAA
+PASS  b2h     input='102'          expected=ERROR          got=(exit 1)
+PASS  b2h     input='abc'          expected=ERROR          got=(exit 1)
+PASS  h2b     input='0'            expected=0000           got=0000
+PASS  h2b     input='F'            expected=1111           got=1111
+PASS  h2b     input='6B5'          expected=011010110101   got=011010110101
+PASS  h2b     input='6b5'          expected=011010110101   got=011010110101
+PASS  h2b     input='0x6B5'        expected=011010110101   got=011010110101
+PASS  h2b     input='FFFF'         expected=1111111111111111 got=1111111111111111
+PASS  h2b     input='A5'           expected=10100101       got=10100101
+PASS  h2b     input='G1'           expected=ERROR          got=(exit 1)
+PASS  h2b     input='0x'           expected=ERROR          got=(exit 1)
+================================
+Passed: 19  Failed: 0
