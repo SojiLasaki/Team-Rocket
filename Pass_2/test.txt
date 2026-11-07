@@ -1,0 +1,8 @@
+each line will look like this 
+
+{"symbol" : "first", "opCode" :  "48", "operand" : "#05", "n" : "0", "i" : "1", "x" : "0", "b" : "0", "p" : "0", "e" : "0", 
+"locationCounter" : "0003", "programCounter" : "0006","targetFeild" : "0027",  "objectCode" : "",  "format" : "3" },
+
+
+{"symbol" : "second", "opCode" :  "51", "operand" : "#05", "n" : "0", "i" : "1", "x" : "0", "b" : "0", "p" : "0", "e" : "0", 
+"locationCounter" : "0003", "programCounter" : "0006","targetFeild" : "0027",  "objectCode" : "",  "format" : "3" },

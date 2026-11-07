@@ -1,0 +1,36 @@
+[
+    {
+        "symbol": "FIRST",
+        "instructionName": "LDA",
+        "opCode": "00",
+        "operand": "#05",
+        "n": "0",
+        "i": "1",
+        "x": "0",
+        "b": "0",
+        "p": "0",
+        "e": "0",
+        "locationCounter": "0000",
+        "programCounter": "0003",
+        "targetFeild": "005",
+        "objectCode": "",
+        "format": "3"
+    },
+    {
+        "symbol": "",
+        "instructionName": "ADD",
+        "opCode": "18",
+        "operand": "VALUE",
+        "n": "1",
+        "i": "1",
+        "x": "0",
+        "b": "0",
+        "p": "1",
+        "e": "0",
+        "locationCounter": "0003",
+        "programCounter": "0006",
+        "targetFeild": "010",
+        "objectCode": "",
+        "format": "3"
+    }
+]
