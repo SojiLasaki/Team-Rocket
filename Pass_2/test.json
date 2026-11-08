@@ -12,7 +12,7 @@
         "e": "0",
         "locationCounter": "0000",
         "programCounter": "0003",
-        "targetFeild": "005",
+        "targetField": "005",
         "objectCode": "",
         "format": "3"
     },
@@ -29,7 +29,7 @@
         "e": "0",
         "locationCounter": "0003",
         "programCounter": "0006",
-        "targetFeild": "010",
+        "targetField": "010",
         "objectCode": "",
         "format": "3"
     }

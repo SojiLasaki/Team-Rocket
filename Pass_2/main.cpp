@@ -76,14 +76,15 @@ int main() {
                              ((targetValue >> 8) & 0x0F);
 
             cout << "First byte: " << hex << uppercase << firstByte << endl;
+            cout << "Second byte: " << hex << uppercase << secondByte << endl;
+
+            int thirdByte = targetValue & 0xFF;
+            cout << "Third byte: " << hex << uppercase << thirdByte << endl;
+
+            int opcode = (firstByte << 16) | (secondByte << 8) | thirdByte;
+            cout << "Opcode: " << hex << uppercase << opcode << endl;
         }
-
-        int firstByte = (opcodeValue & 0xFC) |
-                        (stoi(n) << 1) |
-                        stoi(1);
-
-        int thiedNye = targetValue & 0xFF;
-
+         
         // checking for format 4 instruction
         else if (format == "4") {
             cout << "Format 4 instruction" << endl;
