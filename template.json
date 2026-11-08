@@ -1,0 +1,19 @@
+[
+    {
+        "symbol": "",
+        "instructionName": "",
+        "opCode": "",
+        "operand": "",
+        "n": "",
+        "i": "",
+        "x": "",
+        "b": "",
+        "p": "",
+        "e": "",
+        "locationCounter": "",
+        "programCounter": "",
+        "targetField": "",
+        "objectCode": "",
+        "format": ""
+    }
+]
