@@ -8,6 +8,7 @@
 #include <cctype>
 #include <fstream>
 #include <iostream>
+#include <iterator>
 #include <set>
 #include <string>
 using namespace std;
@@ -16,17 +17,25 @@ using namespace std;
 static const set<string> NO_OPERAND = {
     "RSUB", "FIX", "FLOAT", "HIO", "NORM", "SIO", "TIO", "NOBASE"};
 
-struct Record {
+struct Instruction {
     string symbol;
     string opCode;
+    string opCodeHexNumber;
     string operand;
-    int n = 0, i = 0;
-    int x = 0, b = 0, p = 0, e = 0;
-    string locctr ;
-    string programCtr ;
-    string address ; //targetfield//
-    //string object code
-    //int format
+    string operandHexNumber;
+
+    int n = 0;
+    int i = 0;
+    int x = 0;
+    int b = 0;
+    int p = 0;
+    int e = 0;
+
+    string locationCounter = "0";
+    string programCounter = "0";
+    string targetFeild = "0";
+    string objectCode = "0";
+    int format = 0;
 };
 
 static string upper(string s) {
@@ -70,7 +79,7 @@ static string readOperand(const string &s, size_t &i) {
 }
 
 // Returns false if the line is a comment/blank (nothing to translate)
-static bool parseLine(string line, Record &rec) {
+static bool parseLine(string line, Instruction &rec) {
     while (!line.empty() &&
            (line.back() == '\r' || line.back() == '\n'))
         line.pop_back();
@@ -106,35 +115,25 @@ static bool parseLine(string line, Record &rec) {
     return true;
 }
 
-static void writeRecord(ofstream &out, const Record &r) {
-    out << "{\n"
-               << "\tsymbol : " << r.symbol << ",\n"
-               << "\topCode = " << r.opCode << ",\n"
-               << "\toperand : " << r.operand << ",\n"
-               << "\tn : " << r.n << ", i : " << r.i << ",\n"
-               << "\tx : " << r.x << ", b : " << r.b
-               << ", p : " << r.p << ", e : " << r.e << ",\n"
-               << "\tlocctr : " << r.locctr << "\n"
-               << "\tprogramCtr : " << r.programCtr << "\n"
-               << "\taddress : " << r.address << "\n"
-               << "},\n";
+static void writeRecord(ofstream &out, const Instruction &r) {
+    out << "{\"symbol\" : \"" << r.symbol << "\", "
+        << "\"opCode\" : \"" << r.opCode << "\", "
+        << "\"opCodeHexNumber\" : \"" << r.opCodeHexNumber << "\", "
+        << "\"operand\" : \"" << r.operand << "\", "
+        << "\"operandHexNumber\" : \"" << r.operandHexNumber << "\", "
+        << "\"n\" : \"" << r.n << "\", "
+        << "\"i\" : \"" << r.i << "\", "
+        << "\"x\" : \"" << r.x << "\", "
+        << "\"b\" : \"" << r.b << "\", "
+        << "\"p\" : \"" << r.p << "\", "
+        << "\"e\" : \"" << r.e << "\", \n"
+        << "\"locationCounter\" : \"" << r.locationCounter << "\", "
+        << "\"programCounter\" : \"" << r.programCounter << "\", "
+        << "\"targetFeild\" : \"" << r.targetFeild << "\", "
+        << "\"objectCode\" : \"" << r.objectCode << "\", "
+        << "\"format\" : \"" << r.format << "\" },\n\n";
 }
 
-
-// std::string symbol;
-// std::string opCode;
-// std::string operand;
-// int n;
-// int i;
-// int x;
-// int b;
-// int p;
-// int e;
-// std::string locationCounter;
-// std::string programCounter;
-// std::string targetFeild;
-// std::string objectCode;
-// int format;
 int main(int argc, char *argv[]) {
     string inName, outName;
     if (argc >= 2) {
@@ -156,15 +155,27 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
+    string fileText((istreambuf_iterator<char>(in)), istreambuf_iterator<char>());
     string line;
     int count = 0;
-    while (getline(in, line)) {
-        Record rec;
-        if (parseLine(line, rec)) {
+    auto handleLine = [&](const string &text) {
+        Instruction rec;
+        if (parseLine(text, rec)) {
             writeRecord(out, rec);
             count++;
         }
+    };
+    for (size_t k = 0; k < fileText.size(); k++) {
+        char c = fileText[k];
+        if (c == '\r' || c == '\n') {
+            handleLine(line);
+            line.clear();
+            if (c == '\r' && k + 1 < fileText.size() && fileText[k + 1] == '\n') k++;
+        } else {
+            line += c;
+        }
     }
+    handleLine(line);
 
     cout << "Wrote " << count << " records to " << outName << "\n";
     return 0;
