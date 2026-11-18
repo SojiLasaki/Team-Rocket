@@ -1,0 +1,36 @@
+{"symbol" : "", "opCode" : "LDS", "opCodeHexNumber" : "", "operand" : "#3", "operandHexNumber" : "", "n" : "0", "i" : "0", "x" : "0", "b" : "0", "p" : "0", "e" : "0", 
+"locationCounter" : "0", "programCounter" : "0", "targetFeild" : "0", "objectCode" : "0", "format" : "0" },
+
+{"symbol" : "", "opCode" : "LDT", "opCodeHexNumber" : "", "operand" : "#300", "operandHexNumber" : "", "n" : "0", "i" : "0", "x" : "0", "b" : "0", "p" : "0", "e" : "0", 
+"locationCounter" : "0", "programCounter" : "0", "targetFeild" : "0", "objectCode" : "0", "format" : "0" },
+
+{"symbol" : "", "opCode" : "LDX", "opCodeHexNumber" : "", "operand" : "#0", "operandHexNumber" : "", "n" : "0", "i" : "0", "x" : "0", "b" : "0", "p" : "0", "e" : "0", 
+"locationCounter" : "0", "programCounter" : "0", "targetFeild" : "0", "objectCode" : "0", "format" : "0" },
+
+{"symbol" : "ADDLP", "opCode" : "LDA", "opCodeHexNumber" : "", "operand" : "ALPHA,X", "operandHexNumber" : "", "n" : "0", "i" : "0", "x" : "0", "b" : "0", "p" : "0", "e" : "0", 
+"locationCounter" : "0", "programCounter" : "0", "targetFeild" : "0", "objectCode" : "0", "format" : "0" },
+
+{"symbol" : "", "opCode" : "ADD", "opCodeHexNumber" : "", "operand" : "BETA,X", "operandHexNumber" : "", "n" : "0", "i" : "0", "x" : "0", "b" : "0", "p" : "0", "e" : "0", 
+"locationCounter" : "0", "programCounter" : "0", "targetFeild" : "0", "objectCode" : "0", "format" : "0" },
+
+{"symbol" : "", "opCode" : "STA", "opCodeHexNumber" : "", "operand" : "GAMMA,X", "operandHexNumber" : "", "n" : "0", "i" : "0", "x" : "0", "b" : "0", "p" : "0", "e" : "0", 
+"locationCounter" : "0", "programCounter" : "0", "targetFeild" : "0", "objectCode" : "0", "format" : "0" },
+
+{"symbol" : "", "opCode" : "ADDR", "opCodeHexNumber" : "", "operand" : "S,X", "operandHexNumber" : "", "n" : "0", "i" : "0", "x" : "0", "b" : "0", "p" : "0", "e" : "0", 
+"locationCounter" : "0", "programCounter" : "0", "targetFeild" : "0", "objectCode" : "0", "format" : "0" },
+
+{"symbol" : "", "opCode" : "COMPR", "opCodeHexNumber" : "", "operand" : "X,T", "operandHexNumber" : "", "n" : "0", "i" : "0", "x" : "0", "b" : "0", "p" : "0", "e" : "0", 
+"locationCounter" : "0", "programCounter" : "0", "targetFeild" : "0", "objectCode" : "0", "format" : "0" },
+
+{"symbol" : "", "opCode" : "JLT", "opCodeHexNumber" : "", "operand" : "ADDLP", "operandHexNumber" : "", "n" : "0", "i" : "0", "x" : "0", "b" : "0", "p" : "0", "e" : "0", 
+"locationCounter" : "0", "programCounter" : "0", "targetFeild" : "0", "objectCode" : "0", "format" : "0" },
+
+{"symbol" : "ALPHA", "opCode" : "RESW", "opCodeHexNumber" : "", "operand" : "100", "operandHexNumber" : "", "n" : "0", "i" : "0", "x" : "0", "b" : "0", "p" : "0", "e" : "0", 
+"locationCounter" : "0", "programCounter" : "0", "targetFeild" : "0", "objectCode" : "0", "format" : "0" },
+
+{"symbol" : "BETA", "opCode" : "RESW", "opCodeHexNumber" : "", "operand" : "100", "operandHexNumber" : "", "n" : "0", "i" : "0", "x" : "0", "b" : "0", "p" : "0", "e" : "0", 
+"locationCounter" : "0", "programCounter" : "0", "targetFeild" : "0", "objectCode" : "0", "format" : "0" },
+
+{"symbol" : "GAMMA", "opCode" : "RESW", "opCodeHexNumber" : "", "operand" : "100", "operandHexNumber" : "", "n" : "0", "i" : "0", "x" : "0", "b" : "0", "p" : "0", "e" : "0", 
+"locationCounter" : "0", "programCounter" : "0", "targetFeild" : "0", "objectCode" : "0", "format" : "0" },
+
