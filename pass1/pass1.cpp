@@ -139,10 +139,10 @@ int main(int argc, char *argv[]) {
     if (argc >= 2) {
         inName = argv[1];
     } else {
-        cout << "Input SIC/XE file: ";
+        cout << "Input SIC/XE file with extension. This is case sensitive: ";
         getline(cin, inName);
     }
-    outName = (argc >= 3) ? argv[2] : "pass1_output.txt";
+    outName = (argc >= 3) ? argv[2] : "pass1_output.json";
 
     ifstream in(inName);
     if (!in) {
@@ -158,6 +158,7 @@ int main(int argc, char *argv[]) {
     string fileText((istreambuf_iterator<char>(in)), istreambuf_iterator<char>());
     string line;
     int count = 0;
+    out <<"[\n\n";
     auto handleLine = [&](const string &text) {
         Instruction rec;
         if (parseLine(text, rec)) {
@@ -165,6 +166,7 @@ int main(int argc, char *argv[]) {
             count++;
         }
     };
+
     for (size_t k = 0; k < fileText.size(); k++) {
         char c = fileText[k];
         if (c == '\r' || c == '\n') {
@@ -174,9 +176,11 @@ int main(int argc, char *argv[]) {
         } else {
             line += c;
         }
-    }
-    handleLine(line);
 
+    }
+
+    handleLine(line);
+out <<"\n]";
     cout << "Wrote " << count << " records to " << outName << "\n";
     return 0;
 }
