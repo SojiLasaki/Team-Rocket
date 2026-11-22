@@ -11,33 +11,16 @@
 #include "helpers.h"
 #include "../Pass_2/opcode_table.cpp"
 
-// using std::;
 void getUpperCaseString(std::string str)
 {
 }
 
 std::unordered_map<std::string, std::string> symbolTable;
 
-// bool isSymbolUnique(std::string symbolName)
-// {
-//     auto symbol = symbolTable.find(symbolName);
-
-//     if (symbol != symbolTable.end())
-//     {
-//         std::cout << "Error Symbol: " << symbolName << " is not unique" << std::endl;
-//         return false;
-//     }
-//     else
-//     {
-//         return true;
-//     }
-// }
 
 
 int main()
 {
-
-
     std::string hex;
     std::string res;
 
@@ -51,12 +34,10 @@ int main()
 
     std::stringstream buffer;
     buffer << pass_one_file.rdbuf();
-    // std::string pass1Stream = pass_one_file.rdbuf();
     std::string pass1Stream = buffer.str();
     pass_one_file.close();
 
 
-    std::cout << std::endl;
     int contentEnd = pass1Stream.find("]");
 
     if (contentEnd < 0){
@@ -66,21 +47,12 @@ int main()
 
     std::vector<std::string> preFormatInstructions;
 
-// g++ -std=c++17 main.cpp helpers.cpp -o  main  
     int instructionStart = 1;
     int instructionEnd = 0;
     int i = 0;
 
-    std::string myName = "Test \n \n Test";
-    std::cout << "Test Size" << std::to_string(myName.size()) << std::endl;
-
-
-    std::cout  << fileContentBody << std::endl;
     fileContentBody.erase(std::remove(fileContentBody.begin(), fileContentBody.end(), ' '), fileContentBody.end());
-
     fileContentBody.erase(std::remove(fileContentBody.begin(), fileContentBody.end(), '\r'), fileContentBody.end());
-    // fileContentBody.erase(std::remove(fileContentBody.begin(), fileContentBody.end(), '\r\n'), fileContentBody.end());
-    //     fileContentBody.erase(std::remove(fileContentBody.begin(), fileContentBody.end(), '\n'), fileContentBody.end());
 
 
     int formatLpEnd = fileContentBody.find("]");
@@ -104,12 +76,6 @@ int main()
     for (std::string jsonInstruct : preFormatInstructions){
         jsonInstruct.erase(std::remove(jsonInstruct.begin(), jsonInstruct.end(), '{'), jsonInstruct.end());
         jsonInstruct.erase(std::remove(jsonInstruct.begin(), jsonInstruct.end(), '}'), jsonInstruct.end());
-
-        // std::cout << jsonInstruct << std::endl;
-        // std::cout << "-------------------------------------------------------------------------------------" << std::endl;
-        // std::cout << std::endl;
-        // std::cout << std::endl;
-        // std::cout << std::endl;
         indvInstructionFormatted.push_back(jsonInstruct);
     }
 
@@ -143,29 +109,12 @@ int main()
     // std::string readErrorFlag;
     for (std::string formatedJson : indvInstructionFormatted){
 
-        std::cout << formatedJson << std::endl;
-        std::cout << std::endl;
-        // std::cout << "Here The Pre Start" << std::to_string(start) << std::endl;
-        // std::cout << std::endl;
-
         lineSize = formatedJson.size();
-
-        // formatedJson.erase(std::remove(formatedJson.begin(), formatedJson.end(), ' '), formatedJson.end());
-        // formatedJson.erase(std::remove(formatedJson.begin(), formatedJson.end(), '\n'), formatedJson.end());
-        std::cout << "Line Size is : " << std::to_string(lineSize) << std::endl;
-        std::cout << std::endl;
         start = 0;
         for (int i = 0; i < lineSize; i++){
             if (formatedJson[i] == '\n'){
                 end = i;
                 offset = i - start;
-
-                // std::cout << "I Values : " << std::to_string(i) << std::endl;
-                // std::cout << "Start Value : " << std::to_string(start) << std::endl;
-                // std::cout << "Offset Value : " << std::to_string(offset) << std::endl;
-
-                //Push each line into vector 
-                //Add exceptions to handle out of bound failures and etc here and elsewhere
                 indvInstructionFormatted2.push_back(formatedJson.substr(start, offset));
                 start = end + 1;
             }
@@ -174,10 +123,13 @@ int main()
         std::string propertyName;
         std::string propertyValue;
         for (std::string line : indvInstructionFormatted2){
-            // for (int k = 0; k < 3; k++){
                 semiColonIndex = line.find(":");
+                std::cout << "Line :" << line << std::endl;
                 if (semiColonIndex < 0){
-                    std::cerr << "Error Finding SemiColon in Indv Line When reading pass 1 fike" << std::endl;
+                    std::cerr << "Error Finding SemiColon in Indv Line When reading pass 1 file" << std::endl;
+                    std::cout << "Line :" << line << std::endl;
+                    std::cout << std::endl;
+                    std::cout << std::endl;
                     continue;
                 }
                 propertyName = line.substr(0,semiColonIndex);
@@ -286,9 +238,7 @@ int main()
 
     for (int i = 0; i < vecEnd; i++)
     {
-        // Instruction item = vecItems[i];
 
-        // Instruction formattedInstruction = Instruction {item.symbol, item.opCode, "", item.operand};
 
         if (i == 0){ 
         Instruction firstItem = readInstructions[0];
@@ -300,18 +250,12 @@ int main()
             //Will need to decode this numeric to hex before storing globals
             startAddress = firstItem.operand;
             locationCounter = firstItem.operand;
-            std::cout << "start address:" << startAddress << " Location Counter : " << locationCounter << std::endl;
-            std::cout << std::endl;
-            std::cout << "---------------------------------------" << std::endl;
 
         }
         else
         {
             locationCounter = "0";
             startAddress = "0";
-            std::cout << "start address:" << startAddress << " Location Counter : " << locationCounter << std::endl;
-            std::cout << std::endl;
-            std::cout << "---------------------------------------" << std::endl;
         }
         }
 
@@ -364,7 +308,6 @@ int main()
         if (i == vecEnd - 1){
             readInstructions[i].programCounter = locationCounter;
         }
-        // ComputeAndUpdateInstructionAddressModes(vecItem[i]);
     }
 
 std::cout << "\n==================== SYMBOL TABLE ====================\n";
@@ -409,6 +352,5 @@ std::cout << "======================================================\n\n";
     }
 
     WriteInstructionsToOutPutFile("BasicsTxtIntermediateFile.json", readInstructions);
-
     return 0;
 }

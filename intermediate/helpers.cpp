@@ -18,7 +18,6 @@ std::string decodeHexToNumeric(std::variant<std::string, int> hexValue) {
         hexString = std::get<std::string>(hexValue);
     }
 
-    std::cout << "Hex String " << hexString << std::endl;
     if (hexString == "") {
         return "";
     }
@@ -34,8 +33,6 @@ std::string decodeHexToNumeric(std::variant<std::string, int> hexValue) {
             int powerResult = std::pow(16, exponent);
 
             count += (powerResult * mult);
-            // std::cout << "exp is " << powerResult;
-            //             std::cout << " operation res " << std::to_string(count) << std::endl;
 
         }
         else {
@@ -45,10 +42,8 @@ std::string decodeHexToNumeric(std::variant<std::string, int> hexValue) {
             
 
             int powerResult = std::pow(16, exponent);
-                        count += (powerResult * multInteger);
+            count += (powerResult * multInteger);
 
-            // std::cout << "exp is " << powerResult;
-            //             std::cout << " operation res  " << std::to_string(count) << std::endl;
         }
 
     }
@@ -96,9 +91,6 @@ std::string decodeNumericToHex(int numericValue){
     std::stringstream ss;
     ss << std::hex << numericValue;
     computedStr = ss.str();
-
-    std::cout << "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&" << std::endl;
-    std::cout << "Hex String " << computedStr << std::endl;
     return computedStr;
 }
 std::string computeTwoHexValues(std::variant<std::string, int> currentLocation, std::variant<std::string,int> increment, ArthmeticOperation operation){
@@ -183,7 +175,6 @@ bool isSymbolUnique(std::string symbolName)
 
 void addSymbol(std::string symbolName, std::string locationCounter)
 {
-    // std::cout << symbolName << std::endl;
     symbolTable.insert({symbolName, locationCounter});
 }
 
@@ -195,10 +186,6 @@ void ComputeAndUpdateInstructionAddressModes(Instruction& item) {
             int firstOperandIndex = item.operand.find(",");
             std::string firstOperand = item.operand.substr(0, firstOperandIndex);
             std::string secondOperand = item.operand.substr(firstOperandIndex + 1);
-
-            std::cout << "First Operand " << firstOperand << " Second operand " << secondOperand << std::endl;
-            std::cout << std::endl;
-            std::cout << std::endl;
 
             //Insert First operand register value
             std::transform(firstOperand.begin(), firstOperand.end(), firstOperand.begin(), [](unsigned char c)
@@ -311,36 +298,6 @@ void ComputeAndUpdateInstructionAddressModes(Instruction& item) {
             item.x = 1;
             symbol = item.operand.substr(0, item.operand.find(","));
             computeInstructionXBPEandTA(item, symbol);
-            // std::cout << "I found an indexed symbol " << symbol << std::endl;
-            // auto it = symbolTable.find(symbol);
-            // if (it != symbolTable.end()) {
-            //     auto it = symbolTable.find(symbol);
-            //     symbolLocation = it->second;
-            //     dispHex = computeTwoHexValues(symbolLocation, item.programCounter,SUB);
-            //     dispNumeric = stoi(decodeHexToNumeric(dispHex));
-            //     std::cout << "Distance Hex " << dispHex << std::endl;
-            //     std::cout << "Distance Numeric " << dispNumeric << std::endl;
-                
-            //     if (dispNumeric <= 2047){
-            //         item.p = 1;
-            //         item.targetFeild = dispHex;
-            //     }
-
-            //     else if (dispNumeric <= 4095){
-            //         item.b = 1;
-            //         item.targetFeild = dispHex;
-            //     }
-
-            //     else {
-            //         item.e = 1;
-            //         item.targetFeild = dispHex;
-            //     }
-            // }
-        
-            // else {
-            //     item.errorFlag = "Referenced a unidentified symbol for adressing.";
-            // }
-            // std::cout << "I have a indexed adrress at " << item.operand << std::endl;
         }
         
         else if (!item.operand.empty() && item.operand.find("@") != std::string::npos && item.operand.find("@") == 0){
@@ -348,32 +305,7 @@ void ComputeAndUpdateInstructionAddressModes(Instruction& item) {
             item.i = 0;
             symbol = item.operand.substr(item.operand.find("@") + 1);
 
-            std:: cout << "@ Address found symbol " << symbol << "index = " << item.operand.find("@") << std::endl;
             computeInstructionXBPEandTA(item, symbol);
-
-        //     if (it != symbolTable.end()) {
-        //         symbolLocation = it->second;
-        //         dispHex = computeTwoHexValues(symbolLocation, item.programCounter,SUB);
-        //         dispNumeric = stoi(decodeHexToNumeric(dispHex));
-        //         std::cout << "Distance Hex " << dispHex << std::endl;
-        //         std::cout << "Distance Numeric " << dispNumeric << std::endl;
-                
-        //         if (dispNumeric <= 2047){
-        //             item.p = 1;
-        //             item.targetFeild = dispHex;
-        //         }
-
-        //         else if (dispNumeric <= 4095){
-        //             item.b = 1;
-        //             item.targetFeild = dispHex;
-        //         }
-
-        //         else {
-        //             item.e = 1;
-        //             item.targetFeild = dispHex;
-        //         }
-        //         return;
-        // }
         }
 
         //Handle indirect addressing of operand case
@@ -387,31 +319,7 @@ void ComputeAndUpdateInstructionAddressModes(Instruction& item) {
         else {
             item.n = 1;
             item.i = 1;
-            std::cout << "I found an indirect symbol " << symbol << std::endl;
             computeInstructionXBPEandTA(item, item.operand);
-        //     if (it != symbolTable.end()) {
-        //         symbolLocation = it->second;
-        //         dispHex = computeTwoHexValues(symbolLocation, item.programCounter,SUB);
-        //         dispNumeric = stoi(decodeHexToNumeric(dispHex));
-        //         std::cout << "Distance Hex " << dispHex << std::endl;
-        //         std::cout << "Distance Numeric " << dispNumeric << std::endl;
-                
-        //         if (dispNumeric <= 2047){
-        //             item.p = 1;
-        //             item.targetFeild = dispHex;
-        //         }
-
-        //         else if (dispNumeric <= 4095){
-        //             item.b = 1;
-        //             item.targetFeild = dispHex;
-        //         }
-
-        //         else {
-        //             item.e = 1;
-        //             item.targetFeild = dispHex;
-        //         }
-        //         return;
-        // }
     }
 
     return;
@@ -424,10 +332,6 @@ void computeInstructionXBPEandTA(Instruction& item, std::string symbol){
             std::string symbolLocation;
             symbol.erase(std::remove(symbol.begin(), symbol.end(), ' '), symbol.end());
 
-            std::cout << "Symbol " << symbol << std::endl;
-            std::cout << "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&" << std::endl;
-            std::cout << std::endl;
-            std::cout << std::endl;
             auto it = symbolTable.find(symbol);
             if (it != symbolTable.end()) {
                 auto it = symbolTable.find(symbol);
