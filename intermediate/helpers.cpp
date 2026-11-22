@@ -7,6 +7,7 @@
 #include <variant>
 #include <sstream>
 #include <algorithm>
+#include <fstream>
 
 std::string decodeHexToNumeric(std::variant<std::string, int> hexValue) {
 
@@ -458,4 +459,38 @@ void computeInstructionXBPEandTA(Instruction& item, std::string symbol){
             return;
 }
 
+
+void WriteInstructionsToOutPutFile(std::string outputFileName, std::vector<Instruction> instructions){
+    std::ofstream outputFile(outputFileName, std::ios::app);
+    if (!outputFile.is_open()){
+        std::cerr << "Error Could Not Write to Output File Named: " << outputFileName << std::endl;
+        return;
+    }
+
+    int end = instructions.size();
+    outputFile << "[";
+    for (int i = 0; i < end; i++){
+        std::string instructEnd = i == (end - 1) ?  "}\n" : "},";
+        outputFile <<  "\n\t" <<"{\n\t\t\"symbol\" : \"" << instructions[i].symbol << "\",\n"
+        << "\t\t\"opCode\" : \"" << instructions[i].opCode << "\", \n"
+        << "\t\t\"opCodeHexNumber\" : \"" << instructions[i].opCodeHexNumber << "\", \n"
+        << "\t\t\"operand\" : \"" << instructions[i].operand << "\", " << "\n"
+        << "\t\t\"operandHexNumber\" : \"" << instructions[i].operandHexNumber << "\", \n"
+        << "\t\t\"n\" : \"" << instructions[i].n << "\", \n"
+        << "\t\t\"i\" : \"" << instructions[i].i << "\", \n"
+        << "\t\t\"x\" : \"" << instructions[i].x << "\", \n"
+        << "\t\t\"b\" : \"" << instructions[i].b << "\", \n"
+        << "\t\t\"p\" : \"" << instructions[i].p << "\", \n"
+        << "\t\t\"e\" : \"" << instructions[i].e << "\", \n" 
+        << "\t\t\"locationCounter\" : \"" << instructions[i].locationCounter << "\", " << "\n"
+        << "\t\t\"programCounter\" : \"" << instructions[i].programCounter << "\", " << "\n"
+        << "\t\t\"targetFeild\" : \"" << instructions[i].targetFeild << "\", " << "\n"
+        << "\t\t\"objectCode\" : \"" << instructions[i].objectCode << "\", " << "\n"
+        << "\t\t\"format\" : \"" << instructions[i].format << "\", "<< "\n"
+        << "\t\t\"ErrorFlag\" : \"" << instructions[i].errorFlag << "\"\n\t" << instructEnd;
+    }
+    outputFile << "]";
+
+    outputFile.close();
+}
 

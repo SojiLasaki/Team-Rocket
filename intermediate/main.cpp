@@ -378,7 +378,7 @@ std::cout << "======================================================\n\n";
     }
 
 
-     int count = 0;
+    int count = 0;
     for (Instruction item : readInstructions)
     {
         std::cout << std::endl;
@@ -408,35 +408,7 @@ std::cout << "======================================================\n\n";
         ++count;
     }
 
+    WriteInstructionsToOutPutFile("BasicsTxtIntermediateFile.json", readInstructions);
 
-// int count2 = 0;
-//  for (Instruction item : readInstructions)
-//     {
-//         std::cout << std::endl;
-//         std::cout << std::endl;
-//         std::cout << std::endl;
-//         std::cout << "---------------------------------------" << std::endl;
-//         std::cout << "Item Count " << count2 << std::endl;
-//         std::cout << "symbol: " << item.symbol << std::endl;
-//         std::cout << "opCode: " << item.opCode << std::endl;
-//         std::cout << "opCodeHexNumber: " << item.opCodeHexNumber << std::endl;
-//         std::cout << "operand: " << item.operand << std::endl;
-//         std::cout << "operandHexNumber: " << item.operandHexNumber << std::endl;
-//         std::cout << "n: " << item.n << std::endl;
-//         std::cout << "i: " << item.i << std::endl;
-//         std::cout << "x: " << item.x << std::endl;
-//         std::cout << "b: " << item.b << std::endl;
-//         std::cout << "p: " << item.p << std::endl;
-//         std::cout << "e: " << item.e << std::endl;
-//         std::cout << "locationCounter: " << item.locationCounter << std::endl;
-//         std::cout << "programCounter: " << item.programCounter << std::endl;
-//         std::cout << "targetFeild: " << item.targetFeild << std::endl;
-//         std::cout << "objectCode: " << item.objectCode << std::endl;
-//         std::cout << "format: " << item.format << std::endl;
-//         std::cout << "ErrorFlag: " << item.errorFlag << std::endl;
-//         std::cout << std::endl;
-//         std::cout << std::endl;
-//         ++count2;
-//     }
     return 0;
 }

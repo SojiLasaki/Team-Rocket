@@ -74,3 +74,5 @@ bool isSymbolUnique(std::string symbolName);
 void computeInstructionXBPEandTA(Instruction& instruction, std::string symbol);
 std::string decodeNumericToHex(int numericValue);
 void readPassOneFile(std::string fileName);
+
+void WriteInstructionsToOutPutFile(std::string outputFileName, std::vector<Instruction> instructions);
