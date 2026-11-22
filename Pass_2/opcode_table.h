@@ -9,7 +9,7 @@ struct OpcodeInfo {
     int format;
 };
 
-extern std::unordered_map<std::string, OpcodeInfo> opcodeTable;
+extern const  std::unordered_map<std::string, OpcodeInfo> opcodeTable;
 
 
 #endif // OPCODE_TABLE_H
