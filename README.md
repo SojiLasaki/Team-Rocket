@@ -1,4 +1,25 @@
-# Team Rocket Assembler
+To call the orchestrator, 
+
+g++ -std=c++17 orchestrator.cpp pass1/pass1.cpp path_helper.cpp -o main
+./main
+
+
+
+
+
+
+
+g++ -std=c++17 orchestrator.cpp pass1/pass1.cpp intermediate/runIntermediate.cpp intermediate/helpers.cpp path_helper.cpp -o main
+
+
+
+This is to run the file
+
+@ Samuel Osho you need to fix this
+Issues with the intermediate file where the intermediaet data is reading the json file wrongly for some reason.  Here is the way to go about this
+Renaming the output file won’t fix the contents. The next change should be to replace that manual JSON string parsing with a JSON parser, or update the parsing so it correctly extracts each property from the Pass 1 records. 
+
+<!-- # Team Rocket Assembler
 
 This repository contains early, separate pieces of a SIC/XE-style assembler. The passes are not yet connected by a single orchestrator.
 
@@ -40,3 +61,10 @@ The root `main.cpp` is currently an experimental scratch program; it does not in
 - Pass 2 currently loads the sample JSON, generates object code for formats 1–4, and writes H/T/E records. It is an initial implementation and needs further validation, including address/length handling, format 2 register encoding, and correct instruction data for the header name and execution start address.
 - Binary-to-hex and hex-to-binary utilities have a test script.
 - A single main function that runs Pass 1, the intermediate stage, and Pass 2 has not been implemented.
+
+
+ -->
+
+
+
+

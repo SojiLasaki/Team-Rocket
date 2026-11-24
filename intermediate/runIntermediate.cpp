@@ -9,7 +9,8 @@
 #include <algorithm>
 
 #include "helpers.h"
-#include "../Pass_2/opcode_table.cpp"
+#include "../pass2/opcode_table.cpp"
+#include "../path_helper.h"
 
 void getUpperCaseString(std::string str)
 {
@@ -19,14 +20,16 @@ std::unordered_map<std::string, std::string> symbolTable;
 
 
 
-int main()
+int runIntermediate(const std::string &sourcePath)
 {
     std::string hex;
     std::string res;
 
     std::string locationCounter;
     std::string startAddress;
-        std::fstream pass_one_file("../pass1/pass1_output.json");
+        // std::fstream pass_one_file( sourcePath + "_pass1.json");
+       const std::string pass1FilePath = inputStem(sourcePath) + "_pass1.json"; 
+       std::fstream pass_one_file(pass1FilePath);
 
     if (pass_one_file.is_open() == false){
         std::cerr << "Error Reading Pass 1 File";
@@ -350,7 +353,7 @@ std::cout << "======================================================\n\n";
         std::cout << std::endl;
         ++count;
     }
-
-    WriteInstructionsToOutPutFile("BasicsTxtIntermediateFile.json", readInstructions);
+    
+    WriteInstructionsToOutPutFile(inputStem(sourcePath) + "_intermediate.json", readInstructions);
     return 0;
 }

@@ -13,6 +13,9 @@
 #include <string>
 using namespace std;
 
+#include "pass1.h"
+#include "../path_helper.h"
+
 // Opcodes that never take an operand (anything after them is a comment)
 static const set<string> NO_OPERAND = {
     "RSUB", "FIX", "FLOAT", "HIO", "NORM", "SIO", "TIO", "NOBASE"};
@@ -134,26 +137,42 @@ static void writeRecord(ofstream &out, const Instruction &r) {
         << "\"format\" : \"" << r.format << "\" },\n\n";
 }
 
-int main(int argc, char *argv[]) {
-    string inName, outName;
-    if (argc >= 2) {
-        inName = argv[1];
-    } else {
-        cout << "Input SIC/XE file with extension. This is case sensitive: ";
-        getline(cin, inName);
-    }
-    outName = (argc >= 3) ? argv[2] : "pass1_output.json";
+// int main(int argc, char *argv[]) {
+int runPass1(const std::string& sourcePath){
+    const std::string inName = sourcePath;
+    const std::string outName = inputStem(sourcePath) + "_pass1.json";
 
-    ifstream in(inName);
+    std::ifstream in(inName);
     if (!in) {
-        cerr << "Error: cannot open " << inName << "\n";
+        std::cerr << "Error: cannot open " << inName << "\n";
         return 1;
     }
-    ofstream out(outName);
+    
+    std::ofstream out(outName);
     if (!out) {
-        cerr << "Error: cannot create " << outName << "\n";
+        std::cerr << "Error: cannot create " << outName << "\n";
         return 1;
     }
+    // }
+    // string inName, outName;
+    // if (argc >= 2) {
+    //     inName = argv[1];
+    // } else {
+    //     cout << "Input SIC/XE file with extension. This is case sensitive: ";
+    //     getline(cin, inName);
+    // }
+    // outName = (argc >= 3) ? argv[2] : "pass1_output.json";
+
+    // ifstream in(inName);
+    // if (!in) {
+    //     cerr << "Error: cannot open " << inName << "\n";
+    //     return 1;
+    // }
+    // ofstream out(outName);
+    // if (!out) {
+    //     cerr << "Error: cannot create " << outName << "\n";
+    //     return 1;
+    // }
 
     string fileText((istreambuf_iterator<char>(in)), istreambuf_iterator<char>());
     string line;

@@ -11,7 +11,7 @@ using json = nlohmann::json;
 
 // open and load the json file
 int main() {
-    ifstream inputFile("test.json");
+    ifstream inputFile("../intermediate/BasicsTxtIntermediateFile.json");
     if(!inputFile.is_open()) {
         cout << "Failed to open input file." << endl;
         return 1;

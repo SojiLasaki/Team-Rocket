@@ -11,4 +11,5 @@ struct OpcodeInfo {
 
 extern const std::unordered_map<std::string, OpcodeInfo> opcodeTable;
 
-#endif 
+
+#endif // OPCODE_TABLE_H
